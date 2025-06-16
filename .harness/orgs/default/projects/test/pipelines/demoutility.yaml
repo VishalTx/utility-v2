@@ -42,6 +42,7 @@ pipeline:
                       echo "token gen"
                       # aws_token=`python tests/aws_key_updates_check.py`
                       aws_token="mytoken"
+                      ls
                        
                       if grep -q "^DEV_AWS_SESSION_TOKEN=" .env; then
                           # Replace the existing line
