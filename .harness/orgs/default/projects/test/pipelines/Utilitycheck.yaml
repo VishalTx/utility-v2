@@ -19,8 +19,9 @@ pipeline:
         spec:
           cloneCodebase: true
           caching:
-            enabled: true
+            enabled: false
             override: false
+            paths: []
           platform:
             os: Linux
             arch: Amd64
@@ -57,5 +58,7 @@ pipeline:
 
 
                       ## script run
+          buildIntelligence:
+            enabled: false
         delegateSelectors:
           - docker-delegate-ubuntu
