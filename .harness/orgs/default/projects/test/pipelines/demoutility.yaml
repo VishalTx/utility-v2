@@ -70,5 +70,6 @@ pipeline:
 
                       # Step 6: Optional - Show content for verification
                       echo "Updated .env file content in /tmp/harness_env_check:"
+                      cat /tmp/harness_env_check/.env
         delegateSelectors:
           - docker-delegate-ubuntu
