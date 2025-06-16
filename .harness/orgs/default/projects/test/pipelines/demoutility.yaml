@@ -47,9 +47,11 @@ pipeline:
                       if grep -q "^DEV_AWS_SESSION_TOKEN=" .env; then
                           # Replace the existing line
                           sed -i "s/^DEV_AWS_SESSION_TOKEN=.*/DEV_AWS_SESSION_TOKEN=$aws_token/" .env
+                          echo "executed"
                       else
                           # Append if it doesn't exist
                           echo "DEV_AWS_SESSION_TOKEN=$aws_token" >> .env
+                          echo"token does not exist"
                       fi
         delegateSelectors:
           - docker-delegate-ubuntu
