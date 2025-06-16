@@ -37,4 +37,23 @@ pipeline:
                     connectorRef: Shabdockerhub
                     image: python
                     shell: Sh
-                    command: echo
+                    command: |-
+                      pip install -r requirements.txt
+                      echo "token gen"
+                      # aws_token=`python tests/aws_key_updates_check.py`
+                      aws_token="mytoken"
+
+                      if grep -q "^DEV_AWS_SESSION_TOKEN=" .env; then
+                          # Replace the existing line
+                          sed -i "s/^DEV_AWS_SESSION_TOKEN=.*/DEV_AWS_SESSION_TOKEN=$aws_token/" .env
+                      else
+                          # Append if it doesn't exist
+                          echo "DEV_AWS_SESSION_TOKEN=$aws_token" >> .env
+                      fi
+
+
+                      ############ overide .env values
+
+
+
+                      ## script run
