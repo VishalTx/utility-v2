@@ -38,8 +38,6 @@ pipeline:
                     image: python
                     shell: Sh
                     command: |-
-                      p#!/bin/bash
-
                       # Step 1: Install Python requirements
                       pip install -r src/requirements.txt
 
