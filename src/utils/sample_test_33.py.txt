@@ -1,0 +1,39 @@
+import boto3
+from botocore.exceptions import ClientError, NoCredentialsError, PartialCredentialsError
+from DeluxeD3.DeluxeD3.src.utils.aws_s3_bucket import AWSDeluxeD3S3Bucket
+
+def check_aws_credentials(access_key, secret_key, session_token, region='us-east-1'):
+    try:
+        # Create a session using the provided credentials
+        s3_client = boto3.client(
+            's3',
+            region_name=region,
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            aws_session_token=session_token
+        )
+
+        # Try listing buckets to test credentials
+        response = s3_client.list_buckets()
+        print("✅ AWS credentials are valid. Buckets:")
+        for bucket in response.get('Buckets', []):
+            print(f" - {bucket['Name']}")
+        return True
+
+    except NoCredentialsError:
+        print("❌ No credentials provided.")
+    except PartialCredentialsError:
+        print("❌ Incomplete credentials provided.")
+    except ClientError as e:
+        print(f"❌ AWS Client Error: {e.response['Error']['Message']}")
+    except Exception as e:
+        print(f"❌ Unknown error: {str(e)}")
+    return False
+
+
+if __name__ == "__main__":
+    access_key = AWSDeluxeD3S3Bucket.get_property_value_by_key("DEV_AWS_ACCESS_KEY_ID")
+    secret_key = AWSDeluxeD3S3Bucket.get_property_value_by_key("DEV_AWS_SECRET_ACCESS_KEY")
+    session_token = AWSDeluxeD3S3Bucket.get_property_value_by_key("DEV_AWS_SESSION_TOKEN")
+
+    check_aws_credentials(access_key, secret_key, session_token)
