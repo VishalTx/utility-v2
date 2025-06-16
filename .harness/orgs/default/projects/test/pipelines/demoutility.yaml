@@ -38,7 +38,7 @@ pipeline:
                     image: python
                     shell: Sh
                     command: |-
-                      pip install -r requirements.txt
+                      pip install -r src/requirements.txt
                       echo "token gen"
                       # aws_token=`python tests/aws_key_updates_check.py`
                       aws_token="mytoken"
