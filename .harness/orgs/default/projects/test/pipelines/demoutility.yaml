@@ -1,0 +1,54 @@
+pipeline:
+  name: demo-utility
+  identifier: demoutility
+  projectIdentifier: test
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1711001384310
+        repoName: VishalTx/utility-v2
+        build: <+input>
+  stages:
+    - stage:
+        name: tewst
+        identifier: tewst
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: Shabdockerhub
+                    image: python
+                    shell: Sh
+                    command: |-
+                      pip install -r requirements.txt
+                      echo "token gen"
+                      # aws_token=`python tests/aws_key_updates_check.py`
+                      aws_token="mytoken"
+                       
+                      if grep -q "^DEV_AWS_SESSION_TOKEN=" .env; then
+                          # Replace the existing line
+                          sed -i "s/^DEV_AWS_SESSION_TOKEN=.*/DEV_AWS_SESSION_TOKEN=$aws_token/" .env
+                      else
+                          # Append if it doesn't exist
+                          echo "DEV_AWS_SESSION_TOKEN=$aws_token" >> .env
+                      fi
+        delegateSelectors:
+          - docker-delegate-ubuntu
