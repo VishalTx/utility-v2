@@ -35,7 +35,7 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: Shabdockerhub
+                    connectorRef: account.harnessImage
                     image: python
                     shell: Sh
                     command: |-
