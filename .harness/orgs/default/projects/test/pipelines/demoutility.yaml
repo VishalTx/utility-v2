@@ -67,9 +67,9 @@ pipeline:
 
                       # Step 6: Update secrets in .env
                       update_or_append_env_var "DEV_AWS_SESSION_TOKEN" "$aws_token"
-                      update_or_append_env_var "JIRA_API_TOKEN" "$jira_token"
+                      update_or_append_env_var "Jira_Api_Token" "$jira_token"
                       update_or_append_env_var "AWS_ACCOUNT_ID" "$aws_account_id"
-                      update_or_append_env_var "API_ACCESS_TOKEN" "$api_access_token"
+                      update_or_append_env_var "API_Access_Token" "$api_access_token"
 
                       # Step 7: (Optional) Copy .env to temp folder
                       mkdir -p /tmp/harness_env_check
