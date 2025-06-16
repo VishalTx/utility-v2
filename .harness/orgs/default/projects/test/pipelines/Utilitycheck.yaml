@@ -57,3 +57,5 @@ pipeline:
 
 
                       ## script run
+        delegateSelectors:
+          - docker-delegate-ubuntu
