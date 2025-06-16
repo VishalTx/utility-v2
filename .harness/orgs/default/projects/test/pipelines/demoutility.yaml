@@ -38,20 +38,40 @@ pipeline:
                     image: python
                     shell: Sh
                     command: |-
+                      p#!/bin/bash
+
+                      # Step 1: Install Python requirements
                       pip install -r src/requirements.txt
-                      echo "token gen"
-                      # aws_token=`python tests/aws_key_updates_check.py`
+
+                      echo "Generating token..."
+
+                      # Step 2: (Optional) Get token from script
+                      # Uncomment the line below if your Python script generates the token
+                      # aws_token=$(python tests/aws_key_updates_check.py)
+
+                      # For now, using dummy token
                       aws_token="mytoken"
-                      ls
-                      cd src
+
+                      # Step 3: Move into project directory
+                      cd src || exit 1
+
+                      # Step 4: Check and update .env
                       if grep -q "^DEV_AWS_SESSION_TOKEN=" .env; then
-                          # Replace the existing line
+                          # Replace existing value
                           sed -i "s/^DEV_AWS_SESSION_TOKEN=.*/DEV_AWS_SESSION_TOKEN=$aws_token/" .env
-                          echo "executed"
+                          echo "Token updated in .env"
                       else
-                          # Append if it doesn't exist
+                          # Append if not present
                           echo "DEV_AWS_SESSION_TOKEN=$aws_token" >> .env
-                          echo"token does not exist"
+                          echo "Token key did not exist. Appended to .env"
                       fi
+
+                      # Step 5: Copy the updated .env to a temp folder
+                      mkdir -p /tmp/harness_env_check
+                      cp .env /tmp/harness_env_check/.env
+
+                      # Step 6: Optional - Show content for verification
+                      echo "Updated .env file content in /tmp/harness_env_check:"
+                      cat /tmp/harness_env_check/.env
         delegateSelectors:
           - docker-delegate-ubuntu
