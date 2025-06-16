@@ -75,6 +75,8 @@ pipeline:
                       mkdir -p /tmp/harness_env_check
                       cp .env /tmp/harness_env_check/.env
                       cat /tmp/harness_env_check/.env
+
+                      sleep 120
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
