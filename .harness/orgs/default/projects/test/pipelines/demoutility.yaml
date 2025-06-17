@@ -78,7 +78,7 @@ pipeline:
                       git config --global user.name "CI Bot"
 
                       # Clone the repo
-                      git clone git clone https://<+secrets.getValue("test")>@github.com/Shabnam79/check.git
+                      git clone https://<+secrets.getValue("test")>@github.com/Shabnam79/check.git
 
                       cd check
 
