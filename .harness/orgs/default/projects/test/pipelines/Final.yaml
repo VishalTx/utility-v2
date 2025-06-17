@@ -188,3 +188,5 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("API_Access_Token")>
+        delegateSelectors:
+          - docker-delegate-ubuntu
