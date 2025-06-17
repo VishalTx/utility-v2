@@ -178,3 +178,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("Jira_Api_Token")>
+          - name: AWS_ACCOUNT_ID
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("AWS_ACCOUNT_ID")>
