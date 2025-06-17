@@ -39,39 +39,91 @@ pipeline:
                     shell: Sh
                     command: |-
                       # Step 1: Install Python requirements
+
                       pip install -r src/requirements.txt
                        
-                      # Step 2: (Optional) Get AWS session token
-                      # aws_token=$(python tests/aws_key_updates_check.py)
-                      aws_token="mytoken"  # Replace this if using dynamic token
+                      # Step 2: Use secrets injected via environment variables
+
+                      qa_session_token="$QA_AWS_SESSION_TOKEN"
+
+                      qa_secret_key="$QA_AWS_SECRET_ACCESS_KEY"
+
+                      qa_access_key="$QA_AWS_ACCESS_KEY_ID"
                        
-                      # Step 3: Fetch Harness secrets (runtime-injected by Harness)
-                      jira_token="$JIRA_API_TOKEN"
-                      aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
-                      api_access_token="<+secrets.getValue(\"API_Access_Token\")>"
+                      dev_session_token="$DEV_AWS_SESSION_TOKEN"
+
+                      dev_secret_key="$DEV_AWS_SECRET_ACCESS_KEY"
+
+                      dev_access_key="$DEV_AWS_ACCESS_KEY_ID"
                        
-                      # Step 4: Move into project directory
+                      sftp_pass="$sftp_password"
+
+                      sftp_user="$sftp_username"
+
+                      bitbucket_token="$Bitbucket_Token"
+                       
+                      jira_token="$Jira_Api_Token"
+
+                      aws_account_id="$AWS_ACCOUNT_ID"
+
+                      api_access_token="$API_Access_Token"
+                       
+                      # Step 3: Move into project directory
+
                       cd src || exit 1
                        
-                      # Step 5: Function to update or add env variable
+                      # Step 4: Function to update or add env variable
+
                       update_or_append_env_var() {
+
                           var_name=$1
+
                           var_value=$2
                        
                           if grep -q "^$var_name=" .env; then
+
                               sed -i "s|^$var_name=.*|$var_name=$var_value|" .env
+
                           else
+
                               echo "$var_name=$var_value" >> .env
+
                           fi
+
                       }
                        
-                      # Step 6: Update secrets in .env
-                      update_or_append_env_var "DEV_AWS_SESSION_TOKEN" "$aws_token"
+                      # Step 5: Update secrets in .env
+
+                      update_or_append_env_var "QA_AWS_SESSION_TOKEN" "$qa_session_token"
+
+                      update_or_append_env_var "QA_AWS_SECRET_ACCESS_KEY" "$qa_secret_key"
+
+                      update_or_append_env_var "QA_AWS_ACCESS_KEY_ID" "$qa_access_key"
+                       
+                      update_or_append_env_var "DEV_AWS_SESSION_TOKEN" "$dev_session_token"
+
+                      update_or_append_env_var "DEV_AWS_SECRET_ACCESS_KEY" "$dev_secret_key"
+
+                      update_or_append_env_var "DEV_AWS_ACCESS_KEY_ID" "$dev_access_key"
+                       
+                      update_or_append_env_var "sftp_password" "$sftp_pass"
+
+                      update_or_append_env_var "sftp_username" "$sftp_user"
+
+                      update_or_append_env_var "Bitbucket_Token" "$bitbucket_token"
+                       
                       update_or_append_env_var "Jira_Api_Token" "$jira_token"
+
                       update_or_append_env_var "AWS_ACCOUNT_ID" "$aws_account_id"
+
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
                        
-                      # Step 7: (Optional) Copy .env to temp folder
+                      # Step 6: Copy updated .env file to temp for reuse/debug
+
                       mkdir -p /tmp/harness_env_check
+
                       cp .env /tmp/harness_env_check/.env
+
+                      # Comment this out if secrets must not appear in logs
+
                       cat /tmp/harness_env_check/.env
