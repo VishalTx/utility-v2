@@ -107,7 +107,7 @@ pipeline:
                       spec:
                         script: |-
                           git clone https://github.com/VishalTx/utility-v2.git
-
+                          cd utility-v2/src
 
                           # Step 1: Install Python requirements
                           # pip install -r src/requirements.txt
