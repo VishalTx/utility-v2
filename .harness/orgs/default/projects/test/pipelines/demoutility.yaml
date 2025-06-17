@@ -71,7 +71,7 @@ pipeline:
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
 
                       # Step 7: (Optional) Copy .env to temp folder
-                      mv .env env
+                      cp .env env
                       cp .env /tmp
 
                       git config --global user.email "you@example.com"
