@@ -133,3 +133,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("QA_AWS_SESSION_TOKEN")>
+          - name: QA_AWS_SECRET_ACCESS_KEY
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("QA_AWS_SECRET_ACCESS_KEY")>
