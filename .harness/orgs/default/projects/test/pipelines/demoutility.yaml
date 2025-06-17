@@ -77,9 +77,10 @@ pipeline:
                       git config --global user.email "you@example.com"
                       git config --global user.name "Your Name"
                       git add .
-                      git commit -m "sample"
+                      git checkout main
+                      git commit -m "sample1"
 
-                      git push -u origin main
+                      git push
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
