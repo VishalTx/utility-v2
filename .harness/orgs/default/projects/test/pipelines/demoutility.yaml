@@ -49,6 +49,7 @@ pipeline:
                       # other=<+stage.variables.jira_api>
                       aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
                       api_access_token="$API_Access_Token"
+                      Name="$Name"
 
                       # Step 4: Move into project directory
                       cd src || exit 1
@@ -78,6 +79,8 @@ pipeline:
                       echo "✅ .env file updated and copied to /tmp/harness_env_check"
                       echo "JIRA token length: ${#jira_token}"
                       echo "API access token length: ${#api_access_token}"
+                      echo "length of name: $(#Name)"
+                      echo "$Name"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
@@ -91,6 +94,11 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("API_Access_Token")>
+          - name: Name
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("Name")>
     - stage:
         name: values-update
         identifier: valuesupdate
