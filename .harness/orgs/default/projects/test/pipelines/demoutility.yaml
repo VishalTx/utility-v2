@@ -79,7 +79,7 @@ pipeline:
                       git remote add origin https://github.com/VishalTx/check.git
                       git add .
                       git commit -m "sample"
-                      git push -u origin main
+                      git push
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
