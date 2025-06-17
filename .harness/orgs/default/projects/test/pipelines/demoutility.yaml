@@ -70,26 +70,9 @@ pipeline:
                       update_or_append_env_var "AWS_ACCOUNT_ID" "$aws_account_id"
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
 
-                      # Step 7: (Optional) Copy .env to temp folder
-                      cp .env env
-                      cp .env /tmp
-
-                      git config --global user.email "you@example.com"
-                      git config --global user.name "CI Bot"
-
-                      # Clone the repo
-                      git clone https://github.com/Shabnam79/check.git
-                      cd check
-
-                      # Copy or create .env file in this repo directory
-                      cp /tmp/.env .  # Or generate it dynamically
-
-                      # Add and commit the file
-                      git add .env
-                      git commit -m "Add .env from pipelinee"
-
-                      # Push the change
-                       git push --set-upstream origin main
+                      mkdir -p /tmp/harness_env_check
+                      cp .env /tmp/harness_env_check/.env
+                      cat /tmp/harness_env_check/.env
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
