@@ -60,7 +60,7 @@ pipeline:
 
                       sftp_user="$sftp_username"
 
-                      bitbucket_token="$Bitbucket_Token"
+                      bitbuckettoken="$BitbucketToken"
                        
                       jira_token="$Jira_Api_Token"
 
@@ -110,7 +110,7 @@ pipeline:
 
                       update_or_append_env_var "sftp_username" "$sftp_user"
 
-                      update_or_append_env_var "Bitbucket_Token" "$bitbucket_token"
+                      update_or_append_env_var "BitbucketToken" "$bitbuckettoken"
                        
                       update_or_append_env_var "Jira_Api_Token" "$jira_token"
 
