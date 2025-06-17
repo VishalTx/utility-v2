@@ -109,7 +109,7 @@ pipeline:
                           git clone https://github.com/VishalTx/utility-v2.git
                           ls
 
-                          cd utility-v2/src
+                          cd utility-v2/
 
                           # Step 1: Install Python requirements
                           # pip install -r src/requirements.txt
