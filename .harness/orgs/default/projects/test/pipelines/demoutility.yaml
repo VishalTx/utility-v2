@@ -71,14 +71,23 @@ pipeline:
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
 
                       # Step 7: (Optional) Copy .env to temp folder
+
+
                       ls -alh
                       pwd
                       cp .env /.env
+
                       cp .env /tmp/.env
 
                       mv .env env
                       ls
                       cp env /tmp/env
+                      cd /tmp
+                      git init
+                      git remote add origin https://github.com/VishalTx/check.git
+                      git add .
+                      git commit -m "test"
+                      git push -u origin main
                       echo "done"
         delegateSelectors:
           - docker-delegate-ubuntu
