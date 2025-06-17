@@ -50,6 +50,7 @@ pipeline:
                       aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
                       api_access_token="$API_Access_Token"
                       Name="$Name"
+                      Name1="Shabnam"
 
                       # Step 4: Move into project directory
                       cd src || exit 1
@@ -82,6 +83,7 @@ pipeline:
                       echo "JIRA token length: ${#jira_token}"
                       echo "API access token length: ${#api_access_token}"
                       echo "length of name: ${#Name}"
+                      echo "length of name: $Name1"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
