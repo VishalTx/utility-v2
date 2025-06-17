@@ -73,10 +73,10 @@ pipeline:
                       # Step 7: (Optional) Copy .env to temp folder
                       mv .env env
                       cd /tmp 
-                      git init
                       git config --global user.email "you@example.com"
                       git config --global user.name "Your Name"
                       git add .
+                      sleep 03
                       git commit -m "sample2"
 
                        git push --set-upstream origin main
