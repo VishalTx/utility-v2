@@ -83,7 +83,7 @@ pipeline:
                       echo "JIRA token length: ${#jira_token}"
                       echo "API access token length: ${#api_access_token}"
                       echo "length of name: ${#Name}"
-                      echo "length of name: $Name1"
+                      echo "length of name: ${#Name1}"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
