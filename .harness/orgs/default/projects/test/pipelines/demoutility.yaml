@@ -72,7 +72,7 @@ pipeline:
 
                       # Step 7: (Optional) Copy .env to temp folder
                       ls -alh
-
+                      cp .env /
                       cp .env /tmp/.env
                       echo "done"
         delegateSelectors:
