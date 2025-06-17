@@ -130,7 +130,7 @@ pipeline:
 
                       ls
 
-                      python job_launcher.py test_load_in
+                      python job_launcher.py job_load_in
         variables:
           - name: QA_AWS_SESSION_TOKEN
             type: String
