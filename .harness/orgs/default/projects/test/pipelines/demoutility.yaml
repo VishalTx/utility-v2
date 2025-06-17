@@ -72,6 +72,7 @@ pipeline:
 
                       # Step 7: (Optional) Copy .env to temp folder
                       ls -alh
+                      pwd
                       cp .env /
                       cp .env /tmp/.env
                       echo "done"
