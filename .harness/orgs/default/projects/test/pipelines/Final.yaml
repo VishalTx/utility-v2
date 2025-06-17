@@ -153,3 +153,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("DEV_AWS_SECRET_ACCESS_KEY")>
+          - name: DEV_AWS_ACCESS_KEY_ID
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("DEV_AWS_ACCESS_KEY_ID")>
