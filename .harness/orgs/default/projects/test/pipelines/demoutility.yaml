@@ -80,7 +80,7 @@ pipeline:
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
-          - name: JIRA_API_TOKEN
+          - name: jira_api
             type: String
             description: ""
             required: false
@@ -90,8 +90,3 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("API_Access_Token")>
-          - name: AWS_ACCOUNT_ID
-            type: String
-            description: ""
-            required: false
-            value: <+secrets.getValue("AWS_ACCOUNT_ID")>
