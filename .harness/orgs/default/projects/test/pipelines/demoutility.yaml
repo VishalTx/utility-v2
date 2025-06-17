@@ -81,7 +81,7 @@ pipeline:
                       echo "✅ .env file updated and copied to /tmp/harness_env_check"
                       echo "JIRA token length: ${#jira_token}"
                       echo "API access token length: ${#api_access_token}"
-                      echo "length of name: $(#Name)"
+                      echo "length of name: ${#Name}"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
