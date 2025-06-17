@@ -44,7 +44,7 @@ pipeline:
                       aws_token="mytoken"  # Replace this if using dynamic token
 
                       # Step 3: Fetch Harness secrets (runtime-injected by Harness)
-                      jira_token="$jira_api"
+                      jira_token=<+stage.variables.jira_api>
                       # other=<+stage.variables.jira_api>
                       aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
                       api_access_token="<+secrets.getValue(\"API_Access_Token\")>"
