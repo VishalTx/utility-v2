@@ -76,7 +76,6 @@ pipeline:
                       git init
                       git config --global user.email "you@example.com"
                       git config --global user.name "Your Name"
-                      git remote add origin https://github.com/VishalTx/check.git
                       git add .
                       git commit -m "sample"
 
