@@ -71,6 +71,8 @@ pipeline:
                       update_or_append_env_var "Jira_Api_Token" "$jira_token"
                       update_or_append_env_var "AWS_ACCOUNT_ID" "$aws_account_id"
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
+                      update_or_append_env_var "Name" "$Name"
+
 
                       mkdir -p /tmp/harness_env_check
                       cp .env /tmp/harness_env_check/.env
@@ -80,7 +82,6 @@ pipeline:
                       echo "JIRA token length: ${#jira_token}"
                       echo "API access token length: ${#api_access_token}"
                       echo "length of name: $(#Name)"
-                      echo "$Name"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
