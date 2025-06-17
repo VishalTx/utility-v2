@@ -127,3 +127,9 @@ pipeline:
                       # Comment this out if secrets must not appear in logs
 
                       cat /tmp/harness_env_check/.env
+        variables:
+          - name: QA_AWS_SESSION_TOKEN
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("QA_AWS_SESSION_TOKEN")>
