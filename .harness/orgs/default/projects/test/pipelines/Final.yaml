@@ -158,3 +158,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("DEV_AWS_ACCESS_KEY_ID")>
+          - name: sftp_password
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("sftp_password")>
