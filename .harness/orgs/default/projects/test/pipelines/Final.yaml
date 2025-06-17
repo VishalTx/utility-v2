@@ -1,0 +1,77 @@
+pipeline:
+  name: Final
+  identifier: Final
+  projectIdentifier: test
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1711001384310
+        repoName: VishalTx/utility-v2
+        build: <+input>
+  stages:
+    - stage:
+        name: Updating-env
+        identifier: Updatingenv
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: Shabdockerhub
+                    image: python
+                    shell: Sh
+                    command: |-
+                      # Step 1: Install Python requirements
+                      pip install -r src/requirements.txt
+                       
+                      # Step 2: (Optional) Get AWS session token
+                      # aws_token=$(python tests/aws_key_updates_check.py)
+                      aws_token="mytoken"  # Replace this if using dynamic token
+                       
+                      # Step 3: Fetch Harness secrets (runtime-injected by Harness)
+                      jira_token="$JIRA_API_TOKEN"
+                      aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
+                      api_access_token="<+secrets.getValue(\"API_Access_Token\")>"
+                       
+                      # Step 4: Move into project directory
+                      cd src || exit 1
+                       
+                      # Step 5: Function to update or add env variable
+                      update_or_append_env_var() {
+                          var_name=$1
+                          var_value=$2
+                       
+                          if grep -q "^$var_name=" .env; then
+                              sed -i "s|^$var_name=.*|$var_name=$var_value|" .env
+                          else
+                              echo "$var_name=$var_value" >> .env
+                          fi
+                      }
+                       
+                      # Step 6: Update secrets in .env
+                      update_or_append_env_var "DEV_AWS_SESSION_TOKEN" "$aws_token"
+                      update_or_append_env_var "Jira_Api_Token" "$jira_token"
+                      update_or_append_env_var "AWS_ACCOUNT_ID" "$aws_account_id"
+                      update_or_append_env_var "API_Access_Token" "$api_access_token"
+                       
+                      # Step 7: (Optional) Copy .env to temp folder
+                      mkdir -p /tmp/harness_env_check
+                      cp .env /tmp/harness_env_check/.env
+                      cat /tmp/harness_env_check/.env
