@@ -78,9 +78,9 @@ pipeline:
                       git config --global user.name "Your Name"
                       git add .
                       git checkout -b main
-                      git commit -m "sample1"
+                      git commit -m "sample2"
 
-                      git push
+                       git push --set-upstream origin main
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
