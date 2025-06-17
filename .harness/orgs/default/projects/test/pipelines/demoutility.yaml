@@ -71,26 +71,7 @@ pipeline:
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
 
                       # Step 7: (Optional) Copy .env to temp folder
-
-
-                      ls -alh
-                      pwd
-                      cp .env /.env
-
-                      cp .env /tmp/.env
-
                       mv .env env
-                      ls
-                      cp env /tmp/env
-                      cd /tmp
-                      git init
-                      git remote add origin https://github.com/VishalTx/check.git
-                      git config --global user.email "vishalsadar75@gmail.com"
-                      git config --global user.name "vishal"
-                      git add .
-                      git commit -m "test"
-                      git push -u origin main
-                      echo "done"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
@@ -104,3 +85,67 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("API_Access_Token")>
+    - stage:
+        name: values-update
+        identifier: valuesupdate
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    delegateSelectors:
+                      - docker-delegate-ubuntu
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          git clone https://github.com/VishalTx/utility-v2.git
+
+
+                          # Step 1: Install Python requirements
+                          # pip install -r src/requirements.txt
+
+                          # Step 2: (Optional) Get AWS session token
+                          # aws_token=$(python tests/aws_key_updates_check.py)
+                          aws_token="mytoken"  # Replace this if using dynamic token
+
+                          # Step 3: Fetch Harness secrets (runtime-injected by Harness)
+                          jira_token="$jira_api"
+                          # other=<+stage.variables.jira_api>
+                          aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
+                          api_access_token="<+secrets.getValue(\"API_Access_Token\")>"
+
+                          # Step 4: Move into project directory
+                          cd src || exit 1
+
+                          # Step 5: Function to update or add env variable
+                          update_or_append_env_var() {
+                              var_name=$1
+                              var_value=$2
+
+                              if grep -q "^$var_name=" .env; then
+                                  sed -i "s|^$var_name=.*|$var_name=$var_value|" .env
+                              else
+                                  echo "$var_name=$var_value" >> .env
+                              fi
+                          }
+
+                          # Step 6: Update secrets in .env
+                          update_or_append_env_var "DEV_AWS_SESSION_TOKEN" "$aws_token"
+                          update_or_append_env_var "Jira_Api_Token" "$jira_token"
+                          update_or_append_env_var "AWS_ACCOUNT_ID" "$aws_account_id"
+                          update_or_append_env_var "API_Access_Token" "$api_access_token"
+
+                          # Step 7: (Optional) Copy .env to temp folder
+                          mv .env env
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
