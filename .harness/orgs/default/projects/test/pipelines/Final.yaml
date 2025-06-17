@@ -128,6 +128,8 @@ pipeline:
 
                       cat /tmp/harness_env_check/.env
 
+                      ls
+
                       python job_launcher.py test_load_in
         variables:
           - name: QA_AWS_SESSION_TOKEN
