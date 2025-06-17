@@ -73,6 +73,9 @@ pipeline:
                       mkdir -p /tmp/harness_env_check
                       cp .env /tmp/harness_env_check/.env
                       cat /tmp/harness_env_check/.env
+
+                      echo "✅ .env file updated and copied to /tmp/harness_env_check"
+                      echo "JIRA token length: ${#jira_token}"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
