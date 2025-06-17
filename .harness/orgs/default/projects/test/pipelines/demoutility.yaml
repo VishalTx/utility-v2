@@ -71,8 +71,10 @@ pipeline:
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
 
                       # Step 7: (Optional) Copy .env to temp folder
+                      ls
+
                       cp .env /tmp/.env
-                      cat /tmp/.env
+                      echo "done"
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
