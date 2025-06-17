@@ -163,3 +163,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("sftp_password")>
+          - name: sftp_username
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("sftp_username")>
