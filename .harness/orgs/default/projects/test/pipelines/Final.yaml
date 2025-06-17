@@ -173,3 +173,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("Bitbucket_Token")>
+          - name: Jira_Api_Token
+            type: String
+            description: ""
+            required: false
+            value: <+secrets.getValue("Jira_Api_Token")>
