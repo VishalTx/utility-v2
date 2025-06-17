@@ -34,12 +34,10 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: Shabdockerhub
-                    image: python
                     shell: Sh
                     command: |-
                       # Step 1: Install Python requirements
-                      pip install -r src/requirements.txt
+                      # pip install -r src/requirements.txt
 
                       # Step 2: (Optional) Get AWS session token
                       # aws_token=$(python tests/aws_key_updates_check.py)
@@ -47,6 +45,7 @@ pipeline:
 
                       # Step 3: Fetch Harness secrets (runtime-injected by Harness)
                       jira_token="$jira_api"
+                      other=<+stage.variables.jira_api>
                       aws_account_id="<+secrets.getValue(\"AWS_ACCOUNT_ID\")>"
                       api_access_token="<+secrets.getValue(\"API_Access_Token\")>"
 
@@ -72,11 +71,8 @@ pipeline:
                       update_or_append_env_var "API_Access_Token" "$api_access_token"
 
                       # Step 7: (Optional) Copy .env to temp folder
-                      mkdir -p /tmp/harness_env_check
-                      cp .env /tmp/harness_env_check/.env
-                      cat /tmp/harness_env_check/.env
-
-                      sleep 120
+                      cp .env /tmp/.env
+                      cat /tmp/.env
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
