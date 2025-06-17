@@ -72,14 +72,24 @@ pipeline:
 
                       # Step 7: (Optional) Copy .env to temp folder
                       mv .env env
-                      cd /tmp 
-                      git config --global user.email "you@example.com"
-                      git config --global user.name "Your Name"
-                      git add .
-                      sleep 03
-                      git commit -m "sample2"
+                      cp .env /tmp
 
-                       git push --set-upstream origin main
+                      git config --global user.email "you@example.com"
+                      git config --global user.name "CI Bot"
+
+                      # Clone the repo
+                      git clone https://<your_github_token>@github.com/VishalTx/check.git
+                      cd check
+
+                      # Copy or create .env file in this repo directory
+                      cp /tmp/.env .env  # Or generate it dynamically
+
+                      # Add and commit the file
+                      git add .env
+                      git commit -m "Add .env from pipeline"
+
+                      # Push the change
+                      git push origin main
         delegateSelectors:
           - docker-delegate-ubuntu
         variables:
