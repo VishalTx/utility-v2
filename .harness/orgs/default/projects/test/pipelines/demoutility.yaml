@@ -77,7 +77,7 @@ pipeline:
                       git config --global user.email "you@example.com"
                       git config --global user.name "Your Name"
                       git add .
-                      git checkout main
+                      git checkout -b main
                       git commit -m "sample1"
 
                       git push
