@@ -78,7 +78,7 @@ pipeline:
                       git config --global user.name "CI Bot"
 
                       # Clone the repo
-                      git clone https://<your_github_token>@github.com/VishalTx/check.git
+                      git clone https://github.com/VishalTx/check.git
                       cd check
 
                       # Copy or create .env file in this repo directory
