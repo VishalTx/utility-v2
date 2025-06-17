@@ -168,11 +168,11 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("sftp_username")>
-          - name: Bitbucket_Token
+          - name: BitbucketToken
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("Bitbucket_Token")>
+            value: <+secrets.getValue("BitbucketToken")>
           - name: Jira_Api_Token
             type: String
             description: ""
