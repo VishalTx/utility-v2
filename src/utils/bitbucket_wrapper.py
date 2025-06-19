@@ -19,9 +19,9 @@ def pull_latest(local_path):
         print("Fetching updates from the remote repository...")
         repo = Repo(local_path)
         origin = repo.remotes.origin
-        origin.pull('dev')
-        repo.git.reset('--hard', 'origin/dev')
-        print("Reset --hard origin/dev completed successfully.")
+        origin.pull('master')
+        repo.git.reset('--hard', 'origin/master')
+        print("Reset --hard origin/master completed successfully.")
         return 2, True, 'Success'
     except GitCommandError as e:
         print("Git error:", e)
