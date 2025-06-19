@@ -136,17 +136,17 @@ pipeline:
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("QA_AWS_SESSION_TOKEN")>
+            value: <+secrets.getValue("account.QA_AWS_SESSION_TOKEN")>
           - name: QA_AWS_SECRET_ACCESS_KEY
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("QA_AWS_SECRET_ACCESS_KEY")>
+            value: <+secrets.getValue("account.QA_AWS_SECRET_ACCESS_KEY")>
           - name: QA_AWS_ACCESS_KEY_ID
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("QA_AWS_ACCESS_KEY_ID")>
+            value: <+secrets.getValue("account.QA_AWS_ACCESS_KEY_ID")>
           - name: DEV_AWS_SESSION_TOKEN
             type: String
             description: ""
