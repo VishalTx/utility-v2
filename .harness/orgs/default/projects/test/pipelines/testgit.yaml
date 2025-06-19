@@ -41,5 +41,7 @@ pipeline:
                       git clone https://github.com/VishalTx/utility-v2 src\Bitbucket\d3_ingest
                       echo "done"
                       ls
+                      cd src\Bitbucket\d3_ingest
+                      pwd
         delegateSelectors:
           - docker-delegate-ubuntu
