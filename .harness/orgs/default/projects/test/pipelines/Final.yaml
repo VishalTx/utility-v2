@@ -136,7 +136,7 @@ pipeline:
             type: String
             description: ""
             required: false
-            value: IQoJb3JpZ2luX2VjELX//////////wEaCXVzLWVhc3QtMSJGMEQCIEAfGM4BMhFG28b/tRxv7cSq7I9GR3aT+jRVf6S1JgPxAiAG6AN6fGYLbJmV8/TKhLqzd5rGd/BFXJ3lhxMtlTXIFiqMAwie//////////8BEAAaDDE1NjE1MTU4Njc1MyIMTInp2jLwlfR26kuAKuACoPT7t9KJVBJpqTSGY99T4G0+sWbERt4txDw0LNdnwthx7ytzdSrfovV5WhNDSV/87UITI+T8jKMoglkckSLW0Vt43NuiHpClRGb/xQTtirMyyHVzCiBDbAaQEGJsAvu++fl60/mYxligvI7vdxOrEgOlOjNmOLfmncr7tffw9KlT9YJAFIWriFZc3lzhXJcx0yqb66xujQLosPMedRUVmgD1cb7j1vpUxgYictT8Ncik/JJo8Fk2ooOiEEQkwSPtmGXQ4LTx6o252WLkMXHQ38GhzsfEldZRFPfcg4m4LZtfvaAhQ1CCjHOlRXskd4iFIoqjDywCbAfafNtkr+qUIz90PIZxqc5jHEvx8pO/py5tfl/Fz2gZdvaahlsRa2u2gsTcr3weV9/xgiqFdIhHMXFqwaVa3xXjEm2SdvG+aSrcEWia02lA2sbVMf4kbsp9s7VaH3tPFBFqUC53JN5O1TDerc7CBjqnAX+H7dVcxwvn+UpLa7TCd9nA750jNUJZ3UHPhn7iZ9E0+2xXd71LS6JNOTlp+/uZERn1jTvbIGvhiUIGgVveBegK6iTjAtaq5INlUf7uJ8HkxwAjJgk30R4nxS7ekmSY0tD/1o6Y9awt2O1eA4+JQywAtQZDkVEPm/uma434QQNzQybwbvzaOpx6GgDTctsg5PYc3fHg4qvgkJqEhWAPyYLdQajhh20M
+            value: <+secrets.getValue("QA_AWS_SESSION_TOKEN")>
           - name: QA_AWS_SECRET_ACCESS_KEY
             type: String
             description: ""
