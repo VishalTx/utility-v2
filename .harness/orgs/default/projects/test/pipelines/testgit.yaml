@@ -37,6 +37,8 @@ pipeline:
                     connectorRef: Shabdockerhub
                     image: python
                     shell: Sh
-                    command: git clone https://github.com/VishalTx/utility-v2 src\Bitbucket\d3_ingest
+                    command: |-
+                      git clone https://github.com/VishalTx/utility-v2 src\Bitbucket\d3_ingest
+                      echo "done"
         delegateSelectors:
           - docker-delegate-ubuntu
