@@ -151,46 +151,46 @@ pipeline:
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("DEV_AWS_SESSION_TOKEN")>
+            value: <+secrets.getValue("account.DEV_AWS_SESSION_TOKEN")>
           - name: DEV_AWS_SECRET_ACCESS_KEY
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("DEV_AWS_SECRET_ACCESS_KEY")>
+            value: <+secrets.getValue("account.DEV_AWS_SECRET_ACCESS_KEY")>
           - name: DEV_AWS_ACCESS_KEY_ID
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("DEV_AWS_ACCESS_KEY_ID")>
+            value: <+secrets.getValue("account.DEV_AWS_ACCESS_KEY_ID")>
           - name: sftp_password
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("sftp_password")>
+            value: <+secrets.getValue("account.sftp_password")>
           - name: sftp_username
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("sftp_username")>
+            value: <+secrets.getValue("account.sftp_username")>
           - name: BitbucketToken
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("BitbucketToken")>
+            value: <+secrets.getValue("account.BitbucketToken")>
           - name: Jira_Api_Token
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("Jira_Api_Token")>
+            value: <+secrets.getValue("account.Jira_Api_Token")>
           - name: AWS_ACCOUNT_ID
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("AWS_ACCOUNT_ID")>
+            value: <+secrets.getValue("account.AWS_ACCOUNT_ID")>
           - name: API_Access_Token
             type: String
             description: ""
             required: false
-            value: <+secrets.getValue("API_Access_Token")>
+            value: <+secrets.getValue("account.API_Access_Token")>
         delegateSelectors:
           - docker-delegate-ubuntu
