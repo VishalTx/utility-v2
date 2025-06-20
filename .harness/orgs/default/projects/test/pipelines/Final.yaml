@@ -202,3 +202,4 @@ pipeline:
           pipeline: vs
           project: test
           inputs: {}
+        tags: {}
