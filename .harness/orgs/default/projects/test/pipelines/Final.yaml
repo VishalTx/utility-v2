@@ -192,6 +192,8 @@ pipeline:
             description: ""
             required: false
             value: <+secrets.getValue("account.API_Access_Token")>
+        delegateSelectors:
+          - docker-delegate
     - stage:
         name: QS-Suite
         identifier: QSSuite
