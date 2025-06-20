@@ -193,4 +193,4 @@ pipeline:
             required: false
             value: <+secrets.getValue("account.API_Access_Token")>
         delegateSelectors:
-          - docker-delegate-ubuntu
+          - docker-delegate
