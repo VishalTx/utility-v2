@@ -194,14 +194,3 @@ pipeline:
             value: <+secrets.getValue("account.API_Access_Token")>
         delegateSelectors:
           - docker-delegate
-    - stage:
-        name: QS-Suite
-        identifier: QSSuite
-        description: ""
-        type: Pipeline
-        spec:
-          org: default
-          pipeline: vs
-          project: test
-          inputs: {}
-        tags: {}
